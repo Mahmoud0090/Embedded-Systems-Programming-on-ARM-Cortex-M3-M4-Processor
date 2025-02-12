@@ -34,19 +34,11 @@ int main(void)
 #endif
 
 	int val = 50;
-	__asm volatile("MOV R0,%0" : : "r"(val)); // input operand only
+	__asm volatile("MOV R0,%0" : : "r"(val));
 
 	int control_reg;
 	// write the value of control register to control_reg var
-	__asm volatile("MRS %0,CONTROL": "=r"(control_reg)); // output operand only
-
-	int var1 = 10 , var2;
-	__asm volatile("MOV %0,%1": "=r"(var2) : "r"(var1)); // input and output operand
-
-	int p1 , *p2;
-	p2 = (int*)20000008;
-	__asm volatile("LDR %0 , [%1]" : "=r"(p1) : "r"(p2)); // input and output operand
-
+	__asm volatile("MRS %0,CONTROL": "=r"(control_reg));
 
 	for(;;);
 }
