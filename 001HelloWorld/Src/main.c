@@ -28,5 +28,10 @@ int main(void)
 {
     /* Loop forever */
 	printf("Hello World\n");
+
+	int x = 5;
+	x++;
+
+	printf("the value of x is %d\n" , x);
 	for(;;);
 }
