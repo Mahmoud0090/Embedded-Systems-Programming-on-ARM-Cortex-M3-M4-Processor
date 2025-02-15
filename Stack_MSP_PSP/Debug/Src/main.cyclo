@@ -1,0 +1,6 @@
+../Src/main.c:38:5:func_add	1
+../Src/main.c:43:29:change_sp_to_psp	1
+../Src/main.c:55:6:print_SP_register_values	1
+../Src/main.c:76:6:generate_execption	1
+../Src/main.c:81:5:main	1
+../Src/main.c:104:6:SVC_Handler	1
