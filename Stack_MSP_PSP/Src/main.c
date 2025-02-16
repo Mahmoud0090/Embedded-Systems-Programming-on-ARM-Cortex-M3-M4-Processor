@@ -54,7 +54,7 @@ __attribute__((naked)) void change_sp_to_psp(void)
 
 void print_SP_register_values(void)
 {
-	uint32_t msp, psp, current_sp, control;
+	uint32_t msp, psp, current_sp, control,lr;
 
 	// Read MSP (Main Stack Pointer)
 	__asm volatile ("MRS %0, MSP" : "=r"(msp));
@@ -68,15 +68,19 @@ void print_SP_register_values(void)
 	// Read CONTROL register to check which SP is in use
 	__asm volatile ("MRS %0, CONTROL" : "=r"(control));
 
+	// Link Register (Return Address)
+	__asm volatile ("MOV %0, LR" : "=r"(lr));
+
 	// Print the values
-	printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X\n",
-			msp, psp, current_sp, control);
+	printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
+	           msp, psp, current_sp, control, lr);
 }
 
 void generate_execption(void)
 {
 	__asm volatile("SVC #0X2");
 }
+
 
 int main(void)
 {
@@ -87,22 +91,18 @@ int main(void)
 
 	print_SP_register_values();
 
-
-    int ret;
-
-    ret = func_add(1 , 4 , 5 , 6);
-
-    printf("result = %d\n" , ret);
-
     generate_execption();
 
 	for(;;);
 }
 
-void SVC_Handler(void)
+
+void SVC_Handler()
 {
     print_SP_register_values();
     printf("in SVC handler\n");
+
+    __asm volatile ("BX LR");  // Ensure correct return from exception
 }
 
 

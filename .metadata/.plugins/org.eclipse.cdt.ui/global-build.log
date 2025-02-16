@@ -1,76 +1,76 @@
-15:47:41 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
+01:48:44 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
 make -j4 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
 ../Src/main.c: In function 'print_SP_register_values':
-../Src/main.c:72:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   72 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X\n",
+../Src/main.c:82:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
       |                         ~~~^
       |                            |
       |                            unsigned int
       |                         %08lX
-   73 |                         msp, psp, current_sp, control);
-      |                         ~~~ 
-      |                         |
-      |                         uint32_t {aka long unsigned int}
-../Src/main.c:72:42: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   72 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X\n",
+   83 |                    msp, psp, current_sp, control, lr);
+      |                    ~~~      
+      |                    |
+      |                    uint32_t {aka long unsigned int}
+../Src/main.c:82:42: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
       |                                       ~~~^
       |                                          |
       |                                          unsigned int
       |                                       %08lX
-   73 |                         msp, psp, current_sp, control);
-      |                              ~~~          
-      |                              |
-      |                              uint32_t {aka long unsigned int}
-../Src/main.c:72:55: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   72 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X\n",
+   83 |                    msp, psp, current_sp, control, lr);
+      |                         ~~~               
+      |                         |
+      |                         uint32_t {aka long unsigned int}
+../Src/main.c:82:55: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
       |                                                    ~~~^
       |                                                       |
       |                                                       unsigned int
       |                                                    %08lX
-   73 |                         msp, psp, current_sp, control);
-      |                                   ~~~~~~~~~~           
-      |                                   |
-      |                                   uint32_t {aka long unsigned int}
-../Src/main.c:72:73: warning: format '%X' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   72 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X\n",
+   83 |                    msp, psp, current_sp, control, lr);
+      |                              ~~~~~~~~~~                
+      |                              |
+      |                              uint32_t {aka long unsigned int}
+../Src/main.c:82:73: warning: format '%X' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
       |                                                                      ~~~^
       |                                                                         |
       |                                                                         unsigned int
       |                                                                      %08lX
-   73 |                         msp, psp, current_sp, control);
-      |                                               ~~~~~~~                    
-      |                                               |
-      |                                               uint32_t {aka long unsigned int}
+   83 |                    msp, psp, current_sp, control, lr);
+      |                                          ~~~~~~~                         
+      |                                          |
+      |                                          uint32_t {aka long unsigned int}
+../Src/main.c:82:86: warning: format '%X' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
+      |                                                                                   ~~~^
+      |                                                                                      |
+      |                                                                                      unsigned int
+      |                                                                                   %08lX
+   83 |                    msp, psp, current_sp, control, lr);
+      |                                                   ~~                                  
+      |                                                   |
+      |                                                   uint32_t {aka long unsigned int}
+../Src/main.c: In function 'main':
+../Src/main.c:101:9: warning: unused variable 'ret' [-Wunused-variable]
+  101 |     int ret;
+      |         ^~~
 arm-none-eabi-gcc -o "Stack_MSP_PSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\Stack_MSP_PSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stack_MSP_PSP.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Stack_MSP_PSP.elf
  
 arm-none-eabi-size  Stack_MSP_PSP.elf 
 arm-none-eabi-objdump -h -S Stack_MSP_PSP.elf  > "Stack_MSP_PSP.list"
    text	   data	    bss	    dec	    hex	filename
-   5416	     92	   1900	   7408	   1cf0	Stack_MSP_PSP.elf
+   5184	     92	   1900	   7176	   1c08	Stack_MSP_PSP.elf
 Finished building: default.size.stdout
  
 Finished building: Stack_MSP_PSP.list
  
-15:47:48 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
+01:48:50 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
 make -j4 all 
 arm-none-eabi-size  Stack_MSP_PSP.elf 
    text	   data	    bss	    dec	    hex	filename
-   5416	     92	   1900	   7408	   1cf0	Stack_MSP_PSP.elf
-Finished building: default.size.stdout
- 
-15:49:02 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
-make -j4 all 
-arm-none-eabi-size  Stack_MSP_PSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5416	     92	   1900	   7408	   1cf0	Stack_MSP_PSP.elf
-Finished building: default.size.stdout
- 
-15:51:25 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
-make -j4 all 
-arm-none-eabi-size  Stack_MSP_PSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5416	     92	   1900	   7408	   1cf0	Stack_MSP_PSP.elf
+   5184	     92	   1900	   7176	   1c08	Stack_MSP_PSP.elf
 Finished building: default.size.stdout
  
