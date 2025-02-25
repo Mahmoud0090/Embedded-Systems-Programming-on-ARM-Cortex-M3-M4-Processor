@@ -1,0 +1,10 @@
+01:25:59 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+make -j4 all 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
+Finished building: default.size.stdout
+ 
+
+01:25:59 Build Finished. 0 errors, 0 warnings. (took 232ms)
+

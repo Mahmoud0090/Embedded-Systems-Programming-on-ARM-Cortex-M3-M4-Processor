@@ -1,76 +1,64 @@
-01:48:44 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
+01:13:59 **** Build of configuration Debug for project USART3_Interrupt_pending ****
 make -j4 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-../Src/main.c: In function 'print_SP_register_values':
-../Src/main.c:82:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
-      |                         ~~~^
-      |                            |
-      |                            unsigned int
-      |                         %08lX
-   83 |                    msp, psp, current_sp, control, lr);
-      |                    ~~~      
-      |                    |
-      |                    uint32_t {aka long unsigned int}
-../Src/main.c:82:42: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
-      |                                       ~~~^
-      |                                          |
-      |                                          unsigned int
-      |                                       %08lX
-   83 |                    msp, psp, current_sp, control, lr);
-      |                         ~~~               
-      |                         |
-      |                         uint32_t {aka long unsigned int}
-../Src/main.c:82:55: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
-      |                                                    ~~~^
-      |                                                       |
-      |                                                       unsigned int
-      |                                                    %08lX
-   83 |                    msp, psp, current_sp, control, lr);
-      |                              ~~~~~~~~~~                
-      |                              |
-      |                              uint32_t {aka long unsigned int}
-../Src/main.c:82:73: warning: format '%X' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
-      |                                                                      ~~~^
-      |                                                                         |
-      |                                                                         unsigned int
-      |                                                                      %08lX
-   83 |                    msp, psp, current_sp, control, lr);
-      |                                          ~~~~~~~                         
-      |                                          |
-      |                                          uint32_t {aka long unsigned int}
-../Src/main.c:82:86: warning: format '%X' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |         printf("MSP = 0x%08X, PSP = 0x%08X, SP = 0x%08X, CONTROL = 0x%08X, LR = 0x%08X\n",
-      |                                                                                   ~~~^
-      |                                                                                      |
-      |                                                                                      unsigned int
-      |                                                                                   %08lX
-   83 |                    msp, psp, current_sp, control, lr);
-      |                                                   ~~                                  
-      |                                                   |
-      |                                                   uint32_t {aka long unsigned int}
-../Src/main.c: In function 'main':
-../Src/main.c:101:9: warning: unused variable 'ret' [-Wunused-variable]
-  101 |     int ret;
-      |         ^~~
-arm-none-eabi-gcc -o "Stack_MSP_PSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\Stack_MSP_PSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stack_MSP_PSP.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Stack_MSP_PSP.elf
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+../Src/main.c: In function 'USART3_IRQHandler':
+../Src/main.c:47:9: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   47 |         printf("USART IRQ_Handler called\n");
+      |         ^~~~~~
+../Src/main.c:20:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   19 | #include <stdint.h>
+  +++ |+#include <stdio.h>
+   20 | 
+../Src/main.c:47:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |         printf("USART IRQ_Handler called\n");
+      |         ^~~~~~
+../Src/main.c:47:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "USART3_Interrupt_pending.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\USART3_Interrupt_pending\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USART3_Interrupt_pending.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: USART3_Interrupt_pending.elf
  
-arm-none-eabi-size  Stack_MSP_PSP.elf 
-arm-none-eabi-objdump -h -S Stack_MSP_PSP.elf  > "Stack_MSP_PSP.list"
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+arm-none-eabi-objdump -h -S USART3_Interrupt_pending.elf  > "USART3_Interrupt_pending.list"
    text	   data	    bss	    dec	    hex	filename
-   5184	     92	   1900	   7176	   1c08	Stack_MSP_PSP.elf
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
 Finished building: default.size.stdout
  
-Finished building: Stack_MSP_PSP.list
+Finished building: USART3_Interrupt_pending.list
  
-01:48:50 **** Incremental Build of configuration Debug for project Stack_MSP_PSP ****
+01:14:18 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
 make -j4 all 
-arm-none-eabi-size  Stack_MSP_PSP.elf 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
    text	   data	    bss	    dec	    hex	filename
-   5184	     92	   1900	   7176	   1c08	Stack_MSP_PSP.elf
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
+Finished building: default.size.stdout
+ 
+01:18:04 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+make -j4 all 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
+Finished building: default.size.stdout
+ 
+01:22:21 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+make -j4 all 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
+Finished building: default.size.stdout
+ 
+01:24:19 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+make -j4 all 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
+Finished building: default.size.stdout
+ 
+01:25:59 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+make -j4 all 
+arm-none-eabi-size  USART3_Interrupt_pending.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
 Finished building: default.size.stdout
  
