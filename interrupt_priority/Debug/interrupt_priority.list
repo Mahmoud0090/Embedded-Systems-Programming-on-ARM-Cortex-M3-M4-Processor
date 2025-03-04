@@ -155,7 +155,7 @@ int main(void)
  800026c:	2180      	movs	r1, #128	@ 0x80
  800026e:	201c      	movs	r0, #28
  8000270:	f7ff ffc8 	bl	8000204 <configure_priority_for_irqs>
-	configure_priority_for_irqs(IRQNO_I2C1 , 0x70);
+	configure_priority_for_irqs(IRQNO_I2C1 , 0x70);// higher priority than timer2
  8000274:	2170      	movs	r1, #112	@ 0x70
  8000276:	201f      	movs	r0, #31
  8000278:	f7ff ffc4 	bl	8000204 <configure_priority_for_irqs>
@@ -206,7 +206,8 @@ void TIM2_IRQHandler(void)
 	printf("[TIM2_IRQHandler]\n");
  80002c0:	4806      	ldr	r0, [pc, #24]	@ (80002dc <TIM2_IRQHandler+0x20>)
  80002c2:	f000 fa21 	bl	8000708 <puts>
-	*pNVIC_ISPRBase |= (1 << IRQNO_I2C1);
+	//setting the interrupt pending bit for I2C1
+	*pNVIC_ISPRBase |= (1 << IRQNO_I2C1); // will halt timer2 interrupt and go
  80002c6:	4b06      	ldr	r3, [pc, #24]	@ (80002e0 <TIM2_IRQHandler+0x24>)
  80002c8:	681b      	ldr	r3, [r3, #0]
  80002ca:	681a      	ldr	r2, [r3, #0]
@@ -214,6 +215,7 @@ void TIM2_IRQHandler(void)
  80002ce:	681b      	ldr	r3, [r3, #0]
  80002d0:	f042 4200 	orr.w	r2, r2, #2147483648	@ 0x80000000
  80002d4:	601a      	str	r2, [r3, #0]
+											//to i2c interrupt (higher priority)
 	while(1);
  80002d6:	bf00      	nop
  80002d8:	e7fd      	b.n	80002d6 <TIM2_IRQHandler+0x1a>
