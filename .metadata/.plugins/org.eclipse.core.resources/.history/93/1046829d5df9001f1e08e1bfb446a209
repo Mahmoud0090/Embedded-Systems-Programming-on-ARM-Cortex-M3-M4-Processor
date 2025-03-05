@@ -75,20 +75,13 @@ void BusFault_Handler(void)
 	while(1);
 }
 
-
-//this naked func prevent the compiler from manipulating the stack pointer
-//during the epilog and prolog of the c func
 __attribute__((naked)) void UsageFault_Handler(void)
 {
-	//here we extract the value of MSP which happens to be
-	//the base address of the stack frame (thread mode) which got saved
-	//during the exception entry from thread mode to handler mode
 	__asm("MRS r0 , MSP");
 	__asm("B UsageFault_Handler_c");
 }
 
-// the R0 value from the above UsageFault_Handler will be
-//passed as arg to UsageFault_Handler_c (based on caller & callee rules)
+// the R0 value from the above UsageFault_Handler will be bassed as arg to this func
 void UsageFault_Handler_c(uint32_t* pBaseStackFrame)
 {
 

@@ -68,42 +68,21 @@ void MemManage_Handler(void)
 	while(1);
 
 }
-
 void BusFault_Handler(void)
 {
 	printf("exception : Busfault\n");
 	while(1);
+
 }
-
-
-//this naked func prevent the compiler from manipulating the stack pointer
-//during the epilog and prolog of the c func
-__attribute__((naked)) void UsageFault_Handler(void)
+void UsageFault_Handler(void)
 {
-	//here we extract the value of MSP which happens to be
-	//the base address of the stack frame (thread mode) which got saved
-	//during the exception entry from thread mode to handler mode
-	__asm("MRS r0 , MSP");
-	__asm("B UsageFault_Handler_c");
-}
-
-// the R0 value from the above UsageFault_Handler will be
-//passed as arg to UsageFault_Handler_c (based on caller & callee rules)
-void UsageFault_Handler_c(uint32_t* pBaseStackFrame)
-{
-
+	__asm ("MRS r0 , MSP");
+	register uint32_t msp_value __asm("r0");
+	uint32_t *pMSP = (uint32_t*) msp_value;
 	uint32_t* pUFSR = (uint32_t*) 0xE000ED2A; //usage fault status register
 	printf("exception : Usagefault\n");
 	printf("pUFSR = %lx\n" , (*pUFSR));
-	printf("BaseStackFrame = %p\n" , pBaseStackFrame);
-	printf("value of R0 = %lx\n" , pBaseStackFrame[0]);
-	printf("value of R1 = %lx\n" , pBaseStackFrame[1]);
-	printf("value of R2 = %lx\n" , pBaseStackFrame[2]);
-	printf("value of R3 = %lx\n" , pBaseStackFrame[3]);
-	printf("value of R12 = %lx\n" , pBaseStackFrame[4]);
-	printf("value of LR = %lx\n" , pBaseStackFrame[5]);
-	printf("value of PC = %lx\n" , pBaseStackFrame[6]);
-	printf("value of XPSR = %lx\n" , pBaseStackFrame[7]);
+	printf("pMSP = %p\n" , pMSP);
 	while(1);
 }
 

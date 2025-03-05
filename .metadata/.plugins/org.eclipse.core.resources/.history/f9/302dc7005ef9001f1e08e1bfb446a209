@@ -75,9 +75,6 @@ void BusFault_Handler(void)
 	while(1);
 }
 
-
-//this naked func prevent the compiler from manipulating the stack pointer
-//during the epilog and prolog of the c func
 __attribute__((naked)) void UsageFault_Handler(void)
 {
 	//here we extract the value of MSP which happens to be
@@ -87,8 +84,7 @@ __attribute__((naked)) void UsageFault_Handler(void)
 	__asm("B UsageFault_Handler_c");
 }
 
-// the R0 value from the above UsageFault_Handler will be
-//passed as arg to UsageFault_Handler_c (based on caller & callee rules)
+// the R0 value from the above UsageFault_Handler will be bassed as arg to this func
 void UsageFault_Handler_c(uint32_t* pBaseStackFrame)
 {
 

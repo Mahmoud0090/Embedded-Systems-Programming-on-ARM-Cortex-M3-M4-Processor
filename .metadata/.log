@@ -983,3 +983,42 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-03-04 02:11:33.012
 !MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 16000000; div: 8
+!SESSION 2025-03-04 23:13:57.362 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-04 23:14:56.721
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-04 23:14:56.724
+!MESSAGE Log4j2 initialized with config file C:\Embedded_system_STM32\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-04 23:15:17.288
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-03-04 23:36:22.797 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-04 23:36:34.324
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-04 23:36:34.329
+!MESSAGE Log4j2 initialized with config file C:\Embedded_system_STM32\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-04 23:36:50.059
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-03-05 00:58:25.631
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 16000000; div: 8
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-03-05 01:00:04.217
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 16000000; div: 8
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-03-05 01:51:48.655
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 16000000; div: 8
