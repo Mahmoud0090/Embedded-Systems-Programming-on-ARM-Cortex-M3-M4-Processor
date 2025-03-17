@@ -1,21 +1,56 @@
-00:25:53 **** Incremental Build of configuration Debug for project fault_gen ****
+02:21:45 **** Incremental Build of configuration Debug for project task_scheduler ****
 make -j4 all 
-arm-none-eabi-gcc "../Src/main-1.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main-1.d" -MT"Src/main-1.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main-1.o"
-arm-none-eabi-gcc -o "fault_gen.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\fault_gen\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="fault_gen.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: fault_gen.elf
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "task_scheduler.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\task_scheduler\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="task_scheduler.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: task_scheduler.elf
  
-arm-none-eabi-size  fault_gen.elf 
-arm-none-eabi-objdump -h -S fault_gen.elf  > "fault_gen.list"
+arm-none-eabi-size  task_scheduler.elf 
+arm-none-eabi-objdump -h -S task_scheduler.elf  > "task_scheduler.list"
    text	   data	    bss	    dec	    hex	filename
-   5780	     92	   1900	   7772	   1e5c	fault_gen.elf
+    844	      0	   1568	   2412	    96c	task_scheduler.elf
 Finished building: default.size.stdout
  
-Finished building: fault_gen.list
+Finished building: task_scheduler.list
  
-00:26:08 **** Incremental Build of configuration Debug for project fault_gen ****
+02:22:23 **** Incremental Build of configuration Debug for project task_scheduler ****
 make -j4 all 
-arm-none-eabi-size  fault_gen.elf 
+arm-none-eabi-size  task_scheduler.elf 
    text	   data	    bss	    dec	    hex	filename
-   5780	     92	   1900	   7772	   1e5c	fault_gen.elf
+    844	      0	   1568	   2412	    96c	task_scheduler.elf
+Finished building: default.size.stdout
+ 
+02:23:45 **** Incremental Build of configuration Debug for project task_scheduler ****
+make -j4 all 
+arm-none-eabi-size  task_scheduler.elf 
+   text	   data	    bss	    dec	    hex	filename
+    844	      0	   1568	   2412	    96c	task_scheduler.elf
+Finished building: default.size.stdout
+ 
+02:24:59 **** Incremental Build of configuration Debug for project task_scheduler ****
+make -j4 all 
+arm-none-eabi-size  task_scheduler.elf 
+   text	   data	    bss	    dec	    hex	filename
+    844	      0	   1568	   2412	    96c	task_scheduler.elf
+Finished building: default.size.stdout
+ 
+02:25:33 **** Incremental Build of configuration Debug for project task_scheduler ****
+make -j4 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "task_scheduler.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\task_scheduler\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="task_scheduler.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: task_scheduler.elf
+ 
+arm-none-eabi-size  task_scheduler.elf 
+arm-none-eabi-objdump -h -S task_scheduler.elf  > "task_scheduler.list"
+   text	   data	    bss	    dec	    hex	filename
+    836	      0	   1568	   2404	    964	task_scheduler.elf
+Finished building: default.size.stdout
+ 
+Finished building: task_scheduler.list
+ 
+02:27:26 **** Incremental Build of configuration Debug for project task_scheduler ****
+make -j4 all 
+arm-none-eabi-size  task_scheduler.elf 
+   text	   data	    bss	    dec	    hex	filename
+    836	      0	   1568	   2404	    964	task_scheduler.elf
 Finished building: default.size.stdout
  

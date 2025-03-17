@@ -1,10 +1,29 @@
-01:25:59 **** Incremental Build of configuration Debug for project USART3_Interrupt_pending ****
+02:13:15 **** Build of configuration Debug for project USART3_Interrupt_pending ****
 make -j4 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c: In function 'USART3_IRQHandler':
+../Src/main.c:48:9: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |         printf("USART IRQ_Handler called\n");
+      |         ^~~~~~
+../Src/main.c:20:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   19 | #include <stdint.h>
+  +++ |+#include <stdio.h>
+   20 | 
+../Src/main.c:48:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |         printf("USART IRQ_Handler called\n");
+      |         ^~~~~~
+../Src/main.c:48:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "USART3_Interrupt_pending.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Embedded_system_STM32\USART3_Interrupt_pending\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USART3_Interrupt_pending.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: USART3_Interrupt_pending.elf
+ 
 arm-none-eabi-size  USART3_Interrupt_pending.elf 
+arm-none-eabi-objdump -h -S USART3_Interrupt_pending.elf  > "USART3_Interrupt_pending.list"
    text	   data	    bss	    dec	    hex	filename
    3512	     92	   1900	   5504	   1580	USART3_Interrupt_pending.elf
 Finished building: default.size.stdout
  
+Finished building: USART3_Interrupt_pending.list
+ 
 
-01:25:59 Build Finished. 0 errors, 0 warnings. (took 232ms)
+02:13:16 Build Finished. 0 errors, 2 warnings. (took 736ms)
 

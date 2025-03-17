@@ -125,6 +125,7 @@ int main(void)
 08000238 <USART3_IRQHandler>:
 }
 
+//implement IRQHandle func
 void USART3_IRQHandler(void)
 {
  8000238:	b580      	push	{r7, lr}

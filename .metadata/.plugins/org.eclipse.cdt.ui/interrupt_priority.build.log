@@ -1,4 +1,4 @@
-01:19:19 **** Incremental Build of configuration Debug for project interrupt_priority ****
+02:13:19 **** Build of configuration Debug for project interrupt_priority ****
 make -j4 all 
 arm-none-eabi-size  interrupt_priority.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  interrupt_priority.elf
 Finished building: default.size.stdout
  
 
-01:19:19 Build Finished. 0 errors, 0 warnings. (took 213ms)
+02:13:19 Build Finished. 0 errors, 0 warnings. (took 216ms)
 
