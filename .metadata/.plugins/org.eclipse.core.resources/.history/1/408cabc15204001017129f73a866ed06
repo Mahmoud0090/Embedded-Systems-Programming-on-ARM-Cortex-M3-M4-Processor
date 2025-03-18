@@ -32,7 +32,7 @@ void task4_handler(void); //this is task 4 of the application
 
 void init_systick_timer(uint32_t tick_hz);
 
-__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
+//__attribute__((naked)) init_scheduler_stack(uint32_t sched_top_of_stack);
 
 /*some stack memory calculation*/
 #define SIZE_TASK_STACK     1024U
@@ -116,7 +116,7 @@ void init_systick_timer(uint32_t tick_hz)
 	*pSCSR |= (1 << 0); // enable the counter
 }
 
-__attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
+__attribute__((naked)) init_scheduler_stack(uint32_t sched_top_of_stack)
 {
 	__asm volatile ("MSR MSP, %0" : : "r" (sched_top_of_stack) : );
 	__asm volatile ("BX LR");
