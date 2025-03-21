@@ -39,10 +39,6 @@ void enable_processor_faults(void);
 
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
 
-__attribute__((naked)) void switch_sp_to_psp(void);
-
-uint32_t get_psp_value(void);
-
 
 
 uint32_t psp_of_tasks[MAX_TASKS] = {T1_STACK_START,T2_STACK_START,T3_STACK_START,T4_STACK_START};
@@ -184,20 +180,9 @@ uint32_t get_psp_value(void)
 	return psp_of_tasks[current_task];
 }
 
-__attribute__((naked)) void switch_sp_to_psp(void)
+void switch_sp_to_psp(void)
 {
-	//1- initialize the PSP with TASK1 stack start address
 
-	//get the value of psp of current task
-	__asm volatile("PUSH {LR}"); // preserve LR wheich connects back to main
-	__asm volatile("BL get_psp_value");
-	__asm volatile("MSR PSP, R0");// initialize psp
-	__asm volatile("POP {LR}"); // pops back LR value
-
-	//2- change SP to PSP using CONTROL register
-	__asm volatile("MOV R0, #0X02 ");
-	__asm volatile("MSR CONTROL, R0");
-	__asm volatile("BX LR");
 
 }
 
