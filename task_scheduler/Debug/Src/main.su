@@ -1,8 +1,9 @@
-../Src/main.c:58:5:main	8	static
-../Src/main.c:66:6:task1_handler	8	static
-../Src/main.c:73:6:task2_handler	8	static
-../Src/main.c:81:6:task3_handler	8	static
-../Src/main.c:89:6:task4_handler	8	static
-../Src/main.c:98:6:init_systick_timer	32	static
-../Src/main.c:119:29:init_scheduler_stack	0	static,ignoring_inline_asm
-../Src/main.c:125:6:SysTick_Handler	4	static
+../Src/main.c:46:5:main	8	static
+../Src/main.c:61:6:task1_handler	8	static
+../Src/main.c:68:6:task2_handler	8	static
+../Src/main.c:76:6:task3_handler	8	static
+../Src/main.c:84:6:task4_handler	8	static
+../Src/main.c:93:6:init_systick_timer	32	static
+../Src/main.c:114:29:init_scheduler_stack	0	static,ignoring_inline_asm
+../Src/main.c:121:6:init_task_stack	24	static
+../Src/main.c:152:6:SysTick_Handler	4	static

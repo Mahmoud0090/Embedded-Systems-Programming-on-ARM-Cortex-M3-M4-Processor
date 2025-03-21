@@ -18,6 +18,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include "main.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -32,32 +33,26 @@ void task4_handler(void); //this is task 4 of the application
 
 void init_systick_timer(uint32_t tick_hz);
 
+void init_task_stack(void);
+
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
 
-/*some stack memory calculation*/
-#define SIZE_TASK_STACK     1024U
-#define SIZE_SCHED_STACK    1024U
 
 
-#define SRAM_START			0x20000000U
-#define SIZE_SRAM  			((128) * (1024))
-#define SRAM_END 			((SRAM_START) + (SIZE_SRAM))
+uint32_t psp_of_tasks[MAX_TASKS] = {T1_STACK_START,T2_STACK_START,T3_STACK_START,T4_STACK_START};
 
-#define T1_STACK_START		SRAM_END
-#define T2_STACK_START		((SRAM_END) - (1 * SIZE_SRAM))
-#define T3_STACK_START		((SRAM_END) - (2 * SIZE_SRAM))
-#define T4_STACK_START		((SRAM_END) - (3 * SIZE_SRAM))
-
-#define SCHED_STACK_START	((SRAM_END) - (4 * SIZE_SRAM))
-
-#define TICK_HZ             1000U
-
-#define HSI_CLK				16000000U
-#define SYSTICK_TIM_CLK     HSI_CLK
+uint32_t task_handlers[MAX_TASKS];
 
 int main(void)
 {
 	init_scheduler_stack(SCHED_STACK_START);
+
+	task_handlers[0] = (uint32_t)task1_handler;
+	task_handlers[1] = (uint32_t)task2_handler;
+	task_handlers[2] = (uint32_t)task3_handler;
+	task_handlers[3] = (uint32_t)task4_handler;
+
+	init_task_stack();
 
     init_systick_timer(TICK_HZ);
 	for(;;);
@@ -120,6 +115,38 @@ __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack)
 {
 	__asm volatile ("MSR MSP, %0" : : "r" (sched_top_of_stack) : );
 	__asm volatile ("BX LR");
+}
+
+
+void init_task_stack(void)
+{
+	uint32_t* pPSP;
+
+	for(int i = 0; i<MAX_TASKS ; i++)
+	{
+		pPSP = (uint32_t *)psp_of_tasks[i];
+
+		pPSP--;
+		*pPSP = DUMMY_XPSR; //0x01000000
+
+		pPSP--;//PC
+		*pPSP = task_handlers[i];
+
+		pPSP--;//LR
+		*pPSP = 0xFFFFFFFD;
+
+		//R0 to R12
+
+		for(int j = 0 ;i<13; j++)
+		{
+			pPSP--;
+			*pPSP = 0;
+		}
+
+		//storing the value of psp
+		psp_of_tasks[i] = (uint32_t)pPSP;
+	}
+
 }
 
 void SysTick_Handler(void)
