@@ -188,13 +188,10 @@ void SysTick_Handler(void)
 	/*retrieve the context of next stack*/
 
 	//1- decide next task to run
-	__asm volatile("BL update_next_task");
+	__asm volatile("BL get_next_task");
 	//2- get its past PSP value
-	__asm volatile("BL get_psp_value");
 	//3- using that PSP value to retrieve SF2 (R4 to R11)
-	__asm volatile("LDMIA R0!, {R4-R11}");
 	//4- update PSP and exit
-	__asm volatile("MSR PSP , R0");
 
 }
 
