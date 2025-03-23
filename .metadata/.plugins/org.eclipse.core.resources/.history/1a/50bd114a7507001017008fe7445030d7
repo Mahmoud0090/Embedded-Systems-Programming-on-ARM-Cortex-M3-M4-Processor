@@ -173,7 +173,7 @@ void enable_processor_faults(void)
 }
 
 
-__attribute__((naked)) void SysTick_Handler(void)
+void SysTick_Handler(void)
 {
 	/*save the context of current stack*/
 
@@ -181,8 +181,6 @@ __attribute__((naked)) void SysTick_Handler(void)
 	__asm volatile("MRS R0,PSP");
 	//2- using that PSP value to store SF2 (R4 to R11)
 	__asm volatile("STMDB R0! , {R4-R11}");
-
-	__asm volatile("PUSH {LR}");
 	//3- save the current value of PSP
 	__asm volatile("BL save_psp_value");
 
@@ -197,10 +195,6 @@ __attribute__((naked)) void SysTick_Handler(void)
 	__asm volatile("LDMIA R0!, {R4-R11}");
 	//4- update PSP and exit
 	__asm volatile("MSR PSP , R0");
-
-	__asm volatile("POP {LR}");
-
-	__asm volatile("BX LR");
 
 }
 
@@ -249,6 +243,7 @@ void MemManage_Handler(void)
 {
 	printf("exception : Mem manage fault\n");
 	while(1);
+
 }
 
 void BusFault_Handler(void)

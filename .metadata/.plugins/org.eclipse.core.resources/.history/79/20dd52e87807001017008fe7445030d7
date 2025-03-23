@@ -200,8 +200,6 @@ __attribute__((naked)) void SysTick_Handler(void)
 
 	__asm volatile("POP {LR}");
 
-	__asm volatile("BX LR");
-
 }
 
 uint32_t get_psp_value(void)

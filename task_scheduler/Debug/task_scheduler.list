@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00002d2b  00000000  00000000  00004247  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000169b  00000000  00000000  00006f72  2**0
+ 17 .debug_line   0000169e  00000000  00000000  00006f72  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00009a9a  00000000  00000000  0000860d  2**0
+ 18 .debug_str    00009ab2  00000000  00000000  00008610  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000120a7  2**0
+ 19 .comment      00000043  00000000  00000000  000120c2  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000bb4  00000000  00000000  000120ec  2**2
+ 20 .debug_frame  00000ba4  00000000  00000000  00012108  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000051  00000000  00000000  00012ca0  2**0
+ 21 .debug_line_str 00000051  00000000  00000000  00012cac  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -127,7 +127,7 @@ int main(void)
  800023e:	bf00      	nop
  8000240:	e7fd      	b.n	800023e <main+0x3a>
  8000242:	bf00      	nop
- 8000244:	1ffa0000 	.word	0x1ffa0000
+ 8000244:	2001f000 	.word	0x2001f000
  8000248:	0800025d 	.word	0x0800025d
  800024c:	20000088 	.word	0x20000088
  8000250:	0800026d 	.word	0x0800026d
@@ -332,7 +332,7 @@ void init_task_stack(void)
 
 		//R0 to R12
 
-		for(int j = 0 ;i<13; j++)
+		for(int j = 0 ;j<13; j++)
  8000354:	2300      	movs	r3, #0
  8000356:	607b      	str	r3, [r7, #4]
  8000358:	e008      	b.n	800036c <init_task_stack+0x5c>
@@ -345,11 +345,11 @@ void init_task_stack(void)
  8000360:	68fb      	ldr	r3, [r7, #12]
  8000362:	2200      	movs	r2, #0
  8000364:	601a      	str	r2, [r3, #0]
-		for(int j = 0 ;i<13; j++)
+		for(int j = 0 ;j<13; j++)
  8000366:	687b      	ldr	r3, [r7, #4]
  8000368:	3301      	adds	r3, #1
  800036a:	607b      	str	r3, [r7, #4]
- 800036c:	68bb      	ldr	r3, [r7, #8]
+ 800036c:	687b      	ldr	r3, [r7, #4]
  800036e:	2b0c      	cmp	r3, #12
  8000370:	ddf3      	ble.n	800035a <init_task_stack+0x4a>
 		}
@@ -417,45 +417,48 @@ void enable_processor_faults(void)
  80003d4:	e000ed24 	.word	0xe000ed24
 
 080003d8 <SysTick_Handler>:
-
-
-void SysTick_Handler(void)
+__attribute__((naked)) void SysTick_Handler(void)
 {
- 80003d8:	b480      	push	{r7}
- 80003da:	af00      	add	r7, sp, #0
 	/*save the context of current stack*/
 
 	//1- get current running task's PSP value
 	__asm volatile("MRS R0,PSP");
- 80003dc:	f3ef 8009 	mrs	r0, PSP
+ 80003d8:	f3ef 8009 	mrs	r0, PSP
 	//2- using that PSP value to store SF2 (R4 to R11)
 	__asm volatile("STMDB R0! , {R4-R11}");
- 80003e0:	e920 0ff0 	stmdb	r0!, {r4, r5, r6, r7, r8, r9, sl, fp}
+ 80003dc:	e920 0ff0 	stmdb	r0!, {r4, r5, r6, r7, r8, r9, sl, fp}
+
+	__asm volatile("PUSH {LR}");
+ 80003e0:	b500      	push	{lr}
 	//3- save the current value of PSP
 	__asm volatile("BL save_psp_value");
- 80003e4:	f000 f81c 	bl	8000420 <save_psp_value>
+ 80003e2:	f000 f81d 	bl	8000420 <save_psp_value>
 
 
 	/*retrieve the context of next stack*/
 
 	//1- decide next task to run
 	__asm volatile("BL update_next_task");
- 80003e8:	f000 f82e 	bl	8000448 <update_next_task>
+ 80003e6:	f000 f82f 	bl	8000448 <update_next_task>
 	//2- get its past PSP value
 	__asm volatile("BL get_psp_value");
- 80003ec:	f000 f808 	bl	8000400 <get_psp_value>
+ 80003ea:	f000 f809 	bl	8000400 <get_psp_value>
 	//3- using that PSP value to retrieve SF2 (R4 to R11)
 	__asm volatile("LDMIA R0!, {R4-R11}");
- 80003f0:	e8b0 0ff0 	ldmia.w	r0!, {r4, r5, r6, r7, r8, r9, sl, fp}
+ 80003ee:	e8b0 0ff0 	ldmia.w	r0!, {r4, r5, r6, r7, r8, r9, sl, fp}
 	//4- update PSP and exit
 	__asm volatile("MSR PSP , R0");
- 80003f4:	f380 8809 	msr	PSP, r0
+ 80003f2:	f380 8809 	msr	PSP, r0
+
+	__asm volatile("POP {LR}");
+ 80003f6:	f85d eb04 	ldr.w	lr, [sp], #4
+
+	__asm volatile("BX LR");
+ 80003fa:	4770      	bx	lr
 
 }
- 80003f8:	bf00      	nop
- 80003fa:	46bd      	mov	sp, r7
- 80003fc:	bc80      	pop	{r7}
- 80003fe:	4770      	bx	lr
+ 80003fc:	bf00      	nop
+	...
 
 08000400 <get_psp_value>:
 
@@ -590,7 +593,6 @@ void MemManage_Handler(void)
  80004b4:	0800106c 	.word	0x0800106c
 
 080004b8 <BusFault_Handler>:
-
 }
 
 void BusFault_Handler(void)

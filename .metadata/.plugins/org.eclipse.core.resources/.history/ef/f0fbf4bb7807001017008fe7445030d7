@@ -173,7 +173,7 @@ void enable_processor_faults(void)
 }
 
 
-__attribute__((naked)) void SysTick_Handler(void)
+void SysTick_Handler(void)
 {
 	/*save the context of current stack*/
 
@@ -199,8 +199,6 @@ __attribute__((naked)) void SysTick_Handler(void)
 	__asm volatile("MSR PSP , R0");
 
 	__asm volatile("POP {LR}");
-
-	__asm volatile("BX LR");
 
 }
 
